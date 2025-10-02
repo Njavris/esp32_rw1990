@@ -1,0 +1,7 @@
+menu "iButtonConfiguration"
+
+	config BUTTON_IO_PIN
+		int "iButton IO pin"
+		default 10
+
+endmenu

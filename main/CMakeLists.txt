@@ -1,0 +1,9 @@
+idf_component_register(SRCS
+				"main.c"
+				"ibtn.c"
+				"irq.c"
+			PRIV_REQUIRES
+				esp_driver_gpio
+				esp_driver_uart
+			INCLUDE_DIRS
+				".")
