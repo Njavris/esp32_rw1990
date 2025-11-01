@@ -98,7 +98,7 @@ void ibtn_write_uid(struct ibtn_dev *dev, uint8_t uid[8]) {
 
 			gpio_set_level(dev->pin, 1);
 
-			esp_rom_delay_us(10 * 1000);
+			esp_rom_delay_us(20 * 1000);
 		}
 	}
 	ibtn_rst(dev);
@@ -138,6 +138,6 @@ void ibtn_setup(struct ibtn_dev *dev) {
 	conf.pin_bit_mask = (1ULL << dev->pin);
 	gpio_config(&conf);
 
-	irq_init(&dev->irqdev);
-	irq_en(&dev->irqdev);
+//	irq_init(&dev->irqdev);
+//	irq_en(&dev->irqdev);
 }

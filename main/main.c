@@ -14,13 +14,25 @@ void app_main(void) {
 
 	setvbuf(stdin, NULL, _IONBF, 0);
 	setvbuf(stdout, NULL, _IONBF, 0);
+	uint8_t uid[8];
 	while (1) {
 		char ch = (char)0;
 		fscanf(stdin, "%c", &ch);
-		if (ch == 'w')
-			ibtn_set_mode(&dev, true);
-		else if (ch == 'r')
-			ibtn_set_mode(&dev, false);
+		if (ch == 'w') {
+			printf("Writing uid: ");
+			for (int i = 0; i < 8; i++)
+				printf("0x%02x: ", uid[i]);
+			printf("\n");
+			ibtn_write_uid(&dev, uid);
+			printf("Done\n");
+		} else if (ch == 'r') {
+			printf("Reading uid\n");
+			ibtn_read_uid(&dev, uid);
+			for (int i = 0; i < 8; i++)
+				printf("0x%02x: ", uid[i]);
+			printf("\n");
+		}
+
 		fflush(stdin);
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
 	}
